@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NanoPLOT Utils</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body>
+    <div>
+      <h2>Pixel size</h2>
+      <form>
+        <div class="pb-2">
+          <label>
+            No. of pixels
+            <input id="pixels" type="number" min="0" />
+          </label>
+        </div>
+        <div class="pb-2">
+          <label>
+            Scan size
+            <input id="scan_size" type="number" min="0" />
+          </label>
+        </div>
+      </form>
+      <div>
+        Pixel size
+        <span id="pixel_size"></span>
+      </div>
+    </div>
+  </body>
+</html>
+<script type="text/javascript">
+  function update_pixel_size() {
+    p = parseInt(pixels.value);
+    if (p === 0) {
+      pixel_size.innerHTML = "";
+      return;
+    }
+
+    size = parseInt(scan_size.value);
+    psize = size / p;
+    pixel_size.innerHTML = psize;
+  }
+  pixels.oninput = update_pixel_size;
+  scan_size.oninput = update_pixel_size;
+</script>
