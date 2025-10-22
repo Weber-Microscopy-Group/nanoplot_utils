@@ -7,41 +7,72 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   </head>
   <body>
-    <div>
-      <h2>Pixel size</h2>
-      <form>
-        <div class="pb-2">
-          <label>
-            No. of pixels
-            <input id="pixels" type="number" min="0" />
-          </label>
-        </div>
-        <div class="pb-2">
-          <label>
-            Scan size
-            <input id="scan_size" type="number" min="0" />
-          </label>
-        </div>
-      </form>
+    <main class="flex gap-12">
       <div>
-        Pixel size
-        <span id="pixel_size"></span>
+        <h2 class="text-lg">Pixel size</h2>
+        <form onsubmit="event.preventDefault()">
+          <div class="pb-2">
+            <label>
+              No. of pixels
+              <input id="pixels" type="number" min="0" />
+            </label>
+          </div>
+          <div class="pb-2">
+            <label>
+              Scan size
+              <input id="scan_size" type="number" min="0" />
+            </label>
+          </div>
+        </form>
+        <div>
+          Pixel size
+          <span id="pixel_size"></span>
+        </div>
       </div>
-    </div>
+      <div>
+        <h2 class="text-lg">TRPL reptition rate</h2>
+        <form onsubmit="event.preventDefault()">
+          <div class="pb-2">
+            <label>
+              Repition rate
+              <input id="trpl_repitition_rate" type="number" min="0" />
+              MHz
+            </label>
+          </div>
+        </form>
+        <div>
+          Trial period
+          <span id="trpl_trial_period"></span>
+          μs
+        </div>
+      </div>
+    </main>
   </body>
 </html>
 <script type="text/javascript">
   function update_pixel_size() {
-    p = parseInt(pixels.value);
+    let p = parseInt(pixels.value);
     if (p === 0) {
       pixel_size.innerHTML = "";
       return;
     }
 
-    size = parseInt(scan_size.value);
-    psize = size / p;
+    let size = parseInt(scan_size.value);
+    let psize = size / p;
     pixel_size.innerHTML = psize;
   }
   pixels.oninput = update_pixel_size;
   scan_size.oninput = update_pixel_size;
+
+  function update_trpl_trial_period() {
+    let rate = parseInt(trpl_repitition_rate.value);
+    if (rate === 0) {
+      trpl_trial_period.innerHTML = "";
+      return;
+    }
+
+    let period = 1 / rate;
+    trpl_trial_period.innerHTML = period;
+  }
+  trpl_repitition_rate.oninput = update_trpl_trial_period;
 </script>
