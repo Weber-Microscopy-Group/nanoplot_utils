@@ -1,0 +1,61 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "nanoplot-utils"
+dynamic = ["version"]
+description = ''
+readme = "README.md"
+requires-python = ">=3.8"
+license = "MIT"
+keywords = []
+authors = [
+  { name = "Brian Carlsen", email = "carlsen.bri@gmail.com" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = []
+
+[project.urls]
+Documentation = "https://github.com/Brian Carlsen/nanoplot-utils#readme"
+Issues = "https://github.com/Brian Carlsen/nanoplot-utils/issues"
+Source = "https://github.com/Brian Carlsen/nanoplot-utils"
+
+[tool.hatch.version]
+path = "src/nanoplot_utils/__about__.py"
+
+[tool.hatch.envs.types]
+extra-dependencies = [
+  "mypy>=1.0.0",
+]
+[tool.hatch.envs.types.scripts]
+check = "mypy --install-types --non-interactive {args:src/nanoplot_utils tests}"
+
+[tool.coverage.run]
+source_pkgs = ["nanoplot_utils", "tests"]
+branch = true
+parallel = true
+omit = [
+  "src/nanoplot_utils/__about__.py",
+]
+
+[tool.coverage.paths]
+nanoplot_utils = ["src/nanoplot_utils", "*/nanoplot-utils/src/nanoplot_utils"]
+tests = ["tests", "*/nanoplot-utils/tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
