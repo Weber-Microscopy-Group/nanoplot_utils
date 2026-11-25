@@ -10,9 +10,7 @@ readme = "README.md"
 requires-python = ">=3.8"
 license = "MIT"
 keywords = []
-authors = [
-  { name = "Brian Carlsen", email = "carlsen.bri@gmail.com" },
-]
+authors = [{ name = "Brian Carlsen", email = "carlsen.bri@gmail.com" }]
 classifiers = [
   "Development Status :: 4 - Beta",
   "Programming Language :: Python",
@@ -24,7 +22,7 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
-dependencies = []
+dependencies = ["plotly", "numpy", "imageio"]
 
 [project.urls]
 Documentation = "https://github.com/Brian Carlsen/nanoplot-utils#readme"
@@ -35,9 +33,7 @@ Source = "https://github.com/Brian Carlsen/nanoplot-utils"
 path = "src/nanoplot_utils/__about__.py"
 
 [tool.hatch.envs.types]
-extra-dependencies = [
-  "mypy>=1.0.0",
-]
+extra-dependencies = ["mypy>=1.0.0"]
 [tool.hatch.envs.types.scripts]
 check = "mypy --install-types --non-interactive {args:src/nanoplot_utils tests}"
 
@@ -45,17 +41,11 @@ check = "mypy --install-types --non-interactive {args:src/nanoplot_utils tests}"
 source_pkgs = ["nanoplot_utils", "tests"]
 branch = true
 parallel = true
-omit = [
-  "src/nanoplot_utils/__about__.py",
-]
+omit = ["src/nanoplot_utils/__about__.py"]
 
 [tool.coverage.paths]
 nanoplot_utils = ["src/nanoplot_utils", "*/nanoplot-utils/src/nanoplot_utils"]
 tests = ["tests", "*/nanoplot-utils/tests"]
 
 [tool.coverage.report]
-exclude_lines = [
-  "no cov",
-  "if __name__ == .__main__.:",
-  "if TYPE_CHECKING:",
-]
+exclude_lines = ["no cov", "if __name__ == .__main__.:", "if TYPE_CHECKING:"]
